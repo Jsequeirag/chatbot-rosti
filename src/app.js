@@ -168,7 +168,7 @@ const consultarFlow = addKeyword(EVENTS.ACTION)
     { capture: true },
     async (ctx, { gotoFlow, flowDynamic, fallBack }) => {
       if (!isNaN(ctx.body)) {
-        if (ctx.body !== 1) {
+        if (ctx.body !== "1") {
           return fallBack(consultaText);
         }
       }
