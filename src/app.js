@@ -83,30 +83,8 @@ const uploadResponseInfo = await fileManager.uploadFile(
 async function confirmOrder(order) {
   const chatSession = confirmOrderModel.startChat({});
   const result = await chatSession.sendMessage(order);
-
   return result.response.text();
 }
-
-// View the response.
-console.log(
-  `Uploaded file ${uploadResponseMenu.file.displayName} as: ${uploadResponseMenu.file.uri}`
-);
-console.log(
-  `Uploaded file ${uploadResponseInfo.file.displayName} as: ${uploadResponseMenu.file.uri}`
-);
-// Generate content using text and the URI reference for the uploaded file.
-const result = await model.generateContent([
-  {
-    fileData: {
-      mimeType: uploadResponseMenu.file.mimeType,
-      fileUri: uploadResponseMenu.file.uri,
-    },
-  },
-  { text: "Can you summarize this document as a bulleted list?" },
-]);
-
-// Output the generated text to the console
-console.log(result.response.text());
 
 async function generateOrder(order) {
   const result = await model.generateContent([
@@ -211,7 +189,7 @@ const consultarFlow = addKeyword(EVENTS.ACTION)
       "Desea realizar otra pregunta?",
       "👉 Digite 1 para *Consultar de nuevo*",
       "👉 Digite 2 para *ir al menu principal*",
-    ],
+    ].join("\n"),
     { capture: true },
     async (ctx, { gotoFlow, fallBack }) => {
       if (!["1", "2"].includes(ctx.body)) {
@@ -277,7 +255,7 @@ const expressServiceFlow = addKeyword(EVENTS.ACTION)
       "👉 Digite 1 para *confirmar tu pedido* ✅",
       "👉 Digite 2 para *realizar nuevo pedido* 🍗",
       "👉 Digite 3 para *cancelar pedido* ❌",
-    ],
+    ].join("\n"),
     { capture: true },
     async (ctx, { fallBack, gotoFlow }) => {
       if (!["1", "2", "3"].includes(ctx.body)) {
@@ -333,7 +311,7 @@ const pickUpFlow = addKeyword(EVENTS.ACTION)
       "👉 Digite 1 para *confirmar tu pedido* ✅",
       "👉 Digite 2 para *realizar nuevo pedido* 🍗",
       "👉 Digite 3 para *cancelar pedido* ❌",
-    ],
+    ].join("\n"),
     { capture: true },
     async (ctx, { fallBack, gotoFlow }) => {
       if (!["1", "2", "3"].includes(ctx.body)) {
@@ -372,7 +350,7 @@ const confirmarOrdenFlow = addKeyword(EVENTS.ACTION)
       "👉 Digite *2*  *Servicio express* 🛵",
       "👉 Digite *3* para *Realizar nueva pedido* 🍗",
       "👉 Digite *4* para *Cancelar orden* ❌",
-    ],
+    ].join("\n"),
     { capture: true },
     async (ctx, { gotoFlow, fallBack }) => {
       if (!["1", "2", "3", "4"].includes(ctx.body)) {
@@ -448,7 +426,7 @@ const enviaMenuFlow = addKeyword(EVENTS.ACTION)
       "👉 Digite 1 para *Continuar* ✅",
       "👉 Digite 2 para *Realizar nueva pedido* 🍗",
       "👉 Digite 3 para *Cancelar pedido* ❌",
-    ],
+    ].join("\n"),
     { capture: true },
     async (ctx, { gotoFlow, fallBack }) => {
       if (!["1", "2", "3"].includes(ctx.body)) {

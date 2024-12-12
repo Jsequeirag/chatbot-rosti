@@ -1,4 +1,4 @@
 🤖 Usamos inteligencia Artificial para ayudarte con tu pedido.
-👉 Escriba su pedido, Ejemplo: 1 casado, 2 chifrijo y 3 tacos.
+👉 Escriba su pedido, Ejemplo: 1 casado, 2 chifrijos y 3 tacos.
 👉 Digite 2 para *salir*
 *NOTA:* (Considere el menú disponible y revisar su pedido antes de confirmar).
