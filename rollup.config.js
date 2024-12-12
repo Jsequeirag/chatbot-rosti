@@ -5,6 +5,12 @@ export default {
     format: "esm",
     sourcemap: "inline",
   },
+  plugins: [
+    importAsString({
+      include: ["**/*.txt", "**/*.frag", "**/*.vert"],
+      exclude: ["**/*.test.*"],
+    }),
+  ],
   onwarn: (warning) => {
     if (warning.code === "UNRESOLVED_IMPORT") return;
   },
