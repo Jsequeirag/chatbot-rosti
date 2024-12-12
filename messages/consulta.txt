@@ -1,0 +1,6 @@
+ Bienvenido a la sección de consultas:
+👉 Puedes saber información nuestra escribiendo telefonos, dirección, redes sociales
+👉 Especificar la información que deseas por ejemplo, dirección de la sucursal Alajuela
+👉 Digite *1* para ir al *menu principal*
+      
+      
