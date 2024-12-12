@@ -29,7 +29,7 @@ var transporter = nodemailer.createTransport({
   },
 });
 const sendEmailWithOrder = (orderInfo, client) => {
-  //sentMessageWhatsapp(orderInfo);
+  sentMessageWhatsapp("orderInfo");
   var mailOptions = {
     from: "joseluissequeirag@gmail.com",
     to: "jose@orbitacr.net",
