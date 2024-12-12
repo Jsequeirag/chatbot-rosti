@@ -7,16 +7,7 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 ENV PNPM_HOME=/usr/local/bin
 
 COPY . .
-
-COPY package*.json *-lock.yaml ./
-
-RUN apk add --no-cache --virtual .gyp \
-        python3 \
-        make \
-        g++ \
-    && apk add --no-cache git \
-    && pnpm install \
-    && apk del .gyp
+RUN pnpm run build
 
 FROM node:21-alpine3.18 as deploy
 
@@ -27,7 +18,7 @@ ENV PORT $PORT
 EXPOSE $PORT
 
 COPY --from=builder /app/assets ./assets
-COPY --from=builder /app/build ./build
+COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/*.json /app/*-lock.yaml ./
 
 RUN corepack enable && corepack prepare pnpm@latest --activate 
