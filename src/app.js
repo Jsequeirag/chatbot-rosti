@@ -64,13 +64,10 @@ const confirmOrderModel = genAI.getGenerativeModel({
     "solo contestar el valor de true o false si el siguiente texto tiene un monto en CRC",
 });
 // Upload the file and specify a display name.
-const uploadResponseMenu = await fileManager.uploadFile(
-  "assets/Menu_Especial.pdf",
-  {
-    mimeType: "application/pdf",
-    displayName: "Gemini 1.5 PDF",
-  }
-);
+const uploadResponseMenu = await fileManager.uploadFile("assets/Menu.pdf", {
+  mimeType: "application/pdf",
+  displayName: "Gemini 1.5 PDF",
+});
 
 const uploadResponseInfo = await fileManager.uploadFile(
   "assets/Info_sucursales.pdf",
@@ -390,7 +387,7 @@ function parseBool(value) {
 const enviaMenuFlow = addKeyword(EVENTS.ACTION)
   .addAnswer("Puede *Descargar* y *revisar* el menú 🥗🍕🍔🍰", {
     delay: 800,
-    media: "assets/Menu_Especial.pdf",
+    media: "assets/Menu.pdf",
   })
   .addAnswer(
     createOrderText,
