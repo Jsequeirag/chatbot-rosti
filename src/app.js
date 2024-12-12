@@ -167,10 +167,8 @@ const consultarFlow = addKeyword(EVENTS.ACTION)
     consultaText,
     { capture: true },
     async (ctx, { gotoFlow, flowDynamic, fallBack }) => {
-      if (!isNaN(ctx.body)) {
-        if (ctx.body !== "1") {
-          return fallBack(consultaText);
-        }
+      if (!["1"].includes(ctx.body)) {
+        return fallBack(mainText);
       }
       switch (ctx.body) {
         case "1":
