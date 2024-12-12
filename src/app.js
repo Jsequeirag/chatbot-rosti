@@ -227,7 +227,7 @@ const thanks = addKeyword(EVENTS.ACTION).addAnswer(
 
 const expressServiceFlow = addKeyword(EVENTS.ACTION)
   .addAnswer(
-    "📍Escriba dirección de domicilio para la entrega de su pedido",
+    "📍Escriba dirección de domicilio para la entrega de su pedido👇",
     { capture: true },
     async (ctx, { globalState }) => {
       await globalState.update({ customerDirection: ctx.body });
