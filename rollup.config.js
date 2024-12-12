@@ -10,14 +10,4 @@ export default [
       if (warning.code === "UNRESOLVED_IMPORT") return;
     },
   },
-  {
-    input: "messages/main.txt",
-    output: {
-      file: "dist/messages/main.txt",
-      format: "txt",
-    },
-    onwarn: (warning) => {
-      if (warning.code === "UNRESOLVED_IMPORT") return;
-    },
-  },
 ];
