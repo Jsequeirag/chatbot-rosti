@@ -1,18 +1,23 @@
 import { importAsString } from "rollup-plugin-string-import";
-export default {
-  input: "src/app.js",
-  output: {
-    file: "dist/app.js",
-    format: "esm",
-    sourcemap: "inline",
+export default [
+  {
+    input: "src/app.js",
+    output: {
+      file: "dist/app.js",
+      format: "esm",
+    },
+    onwarn: (warning) => {
+      if (warning.code === "UNRESOLVED_IMPORT") return;
+    },
   },
-  plugins: [
-    importAsString({
-      include: ["**/*.txt", "**/*.frag", "**/*.vert"],
-      exclude: ["**/*.test.*"],
-    }),
-  ],
-  onwarn: (warning) => {
-    if (warning.code === "UNRESOLVED_IMPORT") return;
+  {
+    input: "messages/main.txt",
+    output: {
+      file: "dist/messages/main.txt",
+      format: "txt",
+    },
+    onwarn: (warning) => {
+      if (warning.code === "UNRESOLVED_IMPORT") return;
+    },
   },
-};
+];
