@@ -7,7 +7,16 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 ENV PNPM_HOME=/usr/local/bin
 
 COPY . .
-RUN pnpm run build
+
+COPY package*.json *-lock.yaml ./
+
+RUN apk add --no-cache --virtual .gyp \
+        python3 \
+        make \
+        g++ \
+    && apk add --no-cache git \
+    && pnpm install \
+    && apk del .gyp
 
 FROM node:21-alpine3.18 as deploy
 
