@@ -1,7 +1,7 @@
 # Image size ~ 400MB
 FROM node:21-alpine3.18 as builder
 
-WORKDIR /chatbot-rosti
+WORKDIR /app
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 ENV PNPM_HOME=/usr/local/bin
@@ -20,15 +20,15 @@ RUN apk add --no-cache --virtual .gyp \
 
 FROM node:21-alpine3.18 as deploy
 
-WORKDIR /chatbot-rosti
+WORKDIR /app
 
 ARG PORT
 ENV PORT $PORT
 EXPOSE $PORT
 
-COPY --from=builder /chatbot-rosti/assets ./assets
-COPY --from=builder /chatbot-rosti/dist ./dist
-COPY --from=builder /chatbot-rosti/*.json /chatbot-rosti/*-lock.yaml ./
+COPY --from=builder /app/assets ./assets
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/*.json /app/*-lock.yaml ./
 
 RUN corepack enable && corepack prepare pnpm@latest --activate 
 ENV PNPM_HOME=/usr/local/bin
