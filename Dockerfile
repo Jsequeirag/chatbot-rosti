@@ -10,6 +10,9 @@ COPY . .
 
 COPY package*.json *-lock.yaml ./
 
+# Actualizar npm a la última versión
+RUN npm install -g npm@10.8.1
+
 RUN apk add --no-cache --virtual .gyp \
         python3 \
         make \
