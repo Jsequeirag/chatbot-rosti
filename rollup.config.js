@@ -1,3 +1,4 @@
+import { importAsString } from "rollup-plugin-string-import";
 export default {
   input: "src/app.js",
   output: {
