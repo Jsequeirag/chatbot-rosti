@@ -6,10 +6,10 @@ export const sentMessageWhatsapp = (orderInfo) => {
   var url = "https://graph.facebook.com/v15.0/" + botId + "/messages";
   var data = {
     messaging_product: "whatsapp",
-    to: "50685022903",
+    to: "50657035886",
     type: "text",
     text: {
-      body: ["**pedido por whatsapp**", orderInfo].join("\n"),
+      body: ["hola esto es una prueba"].join("\n"),
     },
   };
   var postReq = {
